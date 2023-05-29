@@ -1,10 +1,10 @@
 CREATE TABLE Utente
 (
     Id INT NOT NULL,
-    Nome VARCHAR(50),
-    Indirizzo VARCHAR(120),
-    Telefono VARCHAR(13),
-    Email VARCHAR(30),
+    Nome VARCHAR(255),
+    Indirizzo VARCHAR(255),
+    Telefono VARCHAR(255),
+    Email VARCHAR(255),
     Azienda VARCHAR(255),
     pIva VARCHAR(255),
     CF VARCHAR(255),
@@ -14,7 +14,7 @@ CREATE TABLE Utente
 CREATE TABLE Magazzino
 (
     Id INT NOT NULL,
-    Indirizzo VARCHAR(60),
+    Indirizzo VARCHAR(255),
     PRIMARY KEY(Id_Magazzino)
 );
 
@@ -22,19 +22,10 @@ CREATE TABLE Prodotto
 (
     SKU INT NOT NULL,
     Nome VARCHAR(255),
-    Prezzo VARCHAR(255),
+    Prezzo FLOAT,
     Descrizione TEXT,
     Tipo VARCHAR(255),
     PRIMARY KEY(SKU)
-);
-
-CREATE TABLE Scelto
-(
-    Utente INT NOT NULL,
-    Prodotto INT NOT NULL,
-    PRIMARY KEY(Utente, Prodotto),
-    FOREIGN KEY(Utente) REFERENCES Utente(Id) ON DELETE CASCADE ON UPDATE SET NULL,
-    FOREIGN KEY(Prodotto) REFERENCES Prodotto(SKU) ON DELETE CASCADE ON UPDATE SET NULL,
 );
 
 CREATE TABLE Situato
@@ -70,8 +61,8 @@ CREATE TABLE Pagamento
     Id INT NOT NULL,
     DataPagamento TIMESTAMP,
     Metodo VARCHAR(255),
-    PrezzoSpedizione VARCHAR(8),
-    PrezzoTotale VARCHAR(8),
+    PrezzoSpedizione FLOAT,
+    PrezzoTotale FLOAT,
     Carrello INT NOT NULL,
     PRIMARY KEY(Id),
     FOREIGN KEY(Carrello) REFERENCES Carrello(Id) ON DELETE CASCADE ON UPDATE SET NULL
