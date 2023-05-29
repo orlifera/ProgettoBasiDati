@@ -6,9 +6,6 @@ CREATE TABLE Utente(
     Email VARCHAR(30),
     Spedizione INT NOT NULL,
     PRIMARY KEY(Id),
-    FOREIGN KEY(Spedizione) REFERENCES Spedizione(Id) ON DELETE CASCADE ON UPDATE
-    SET
-        NULL
 );
 
 CREATE TABLE Prodotto(
@@ -26,16 +23,15 @@ CREATE TABLE Scelto(
     PRIMARY KEY(Utente, Prodotto),
     FOREIGN KEY(Utente) REFERENCES Utente(Id_Utente) ON DELETE CASCADE ON UPDATE
     SET
-        NULL
+        NULL,
+    FOREIGN 
 );
 
 CREATE TABLE Contenuto(
     Prodotto INT NOT NULL,
     Carrello INT NOT NULL,
     PRIMARY KEY(Prodotto, Carrello),
-    FOREIGN KEY(Prodotto) REFERENCES Prodotto(SKU) ON DELETE CASCADE ON UPDATE
-    SET
-        NULL,
+    FOREIGN KEY(Prodotto) REFERENCES Prodotto(SKU) ON DELETE CASCADE ON UPDATE SET NULL,
         FOREIGN KEY(Carrello) REFERENCES Carrello(Id_Cart) ON DELETE CASCADE ON UPDATE
     SET
         NULL,
@@ -102,7 +98,11 @@ CREATE TABLE Spedizione(
     Data_Spedizione DATE,
     Data_Consegna DATE,
     Peso INT NOT NULL,
-    PRIMARY KEY(Id_Spedizione)
+    Utente INT NOT NULL,
+    PRIMARY KEY(Id_Spedizione),
+    FOREIGN KEY(Utente) REFERENCES Utente(Id_Utente) ON DELETE CASCADE ON UPDATE
+    SET
+        NULL
 );
 
 CREATE TABLE Destinatario(
