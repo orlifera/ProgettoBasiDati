@@ -82,3 +82,65 @@ void printValueFile(int tuple, int campi, PGresult *res, ofstream myfile)
         myfile << endl;
     }
 }
+
+void grafica(int i)
+{
+    switch (i)
+    {
+    case 0:
+        cout << "\n-----Inizio Query-----\n";
+        break;
+    case 1:
+        cout << "Query 1. Trovare gli utenti che sono azienda.\n";
+        break;
+    case 2:
+        cout << "Query 2. Trovare tutti i pagamenti di un certo utente.\n";
+        break;
+    case 3:
+        cout << "Query 3. Trovare tutti i pagamenti con un certo metodo.\n";
+        break;
+
+    case 4:
+        cout << "Query 4. Trovare tutti i prodotti del carrello degli utenti.\n";
+        break;
+
+    case 5:
+        cout << "Query 5. Trovare che prodotti sono in un certo magazzino dato il suo codice\
+                 identificativo.\n";
+        break;
+
+    case 6:
+        cout << "Query 6. Trovare il numero di ordini di un utente.\n";
+        break;
+
+    case 7:
+        cout << "Query 7. Trovare il numero di aziende dentro il database.\n";
+        break;
+
+    case 8:
+        cout << "Query 8. Trovare tutte le spedizioni verso un utente.\n";
+        break;
+
+    case 9:
+        cout << "Query 9. Tracciamento spedizione.\n";
+        break;
+
+    case 10:
+        cout << "Query 10. Utenti con p.iva e codice fiscale (deve restituire NULL).\n";
+        break;
+
+    default:
+        break;
+    }
+}
+
+void UtentiAzienda(PGconn *conn, PGresult *res)
+{
+    res = PQexec(conn, "SELECT u.nome, u.azienda, u.pIva FROM Utente as u \ 
+                   WHERE pIva IS NOT NULL GROUP BY u.nome, u.azienda, u.pIva");
+    checkResults(res, conn);
+    int tuple = PQntuples(res);
+    int campi = PQnfields(res);
+    printIntestazione(campi, res);
+    printValue(tuple, campi, res);
+}
