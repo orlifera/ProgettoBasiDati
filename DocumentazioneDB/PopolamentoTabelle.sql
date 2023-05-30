@@ -105,36 +105,36 @@ CREATE TABLE Destinatario
 INSERT INTO Utente
     (Id, Nome, Indirizzo, Telefono, Email, Azienda, pIva, CF)
 VALUES
-    (1, 'Wilhelmina Jacquemard', '88 Jenna Junction', '+249 468 510 5984', 'wjacquemard0@soundcloud.com', '', '', ''),
-    (2, 'Care Galland', '634 Banding Parkway', '+420 390 610 3240', 'cgalland1@macromedia.com', '', '', ''),
-    (3, 'Shandra Aikin', '19788 Orin Terrace', '+62 797 181 6151', 'saikin2@unicef.org', '', '', ''),
-    (4, 'Bell Pappi', '720 Troy Pass', '+63 118 877 2980', 'bpappi3@theglobeandmail.com', '', '', ''),
-    (5, 'Pearce Clissett', '31 Troy Alley', '+7 841 462 3287', 'pclissett4@deliciousdays.com', '', '', ''),
-    (6, 'Odelia Swyer', '8477 Kipling Alley', '+86 460 470 1622', 'oswyer5@kickstarter.com', '', '', ''),
-    (7, 'Rene Leek', '3 Forest Dale Drive', '+46 237 515 5297', 'rleek6@mayoclinic.com', '', '', ''),
-    (8, 'Benoit Attwool', '1 Homewood Place', '+62 648 864 2420', 'battwool7@mail.ru', '', '', ''),
-    (9, 'Nanny Midden', '2 Kedzie Circle', '+54 323 374 9278', 'nmidden8@chicagotribune.com', '', '', ''),
-    (10, 'Pierette Lanyon', '66 Almo Avenue', '+60 500 286 1025', 'planyon9@123-reg.co.uk', '', '', ''),
-    (11, 'Earl Bateman', '43 East Hill', '+86 739 166 0837', 'ebatemana@usatoday.com', '', '', ''),
-    (12, 'Nicholle Worcester', '03 Amoth Junction', '+86 939 352 6540', 'nworcesterb@is.gd', '', '', ''),
-    (13, 'Tiffanie Thrush', '4 Spenser Center', '+212 738 585 4918', 'tthrushc@zimbio.com', '', '', ''),
-    (14, 'Erroll Kennifeck', '6 Iowa Alley', '+86 551 218 0295', 'ekennifeckd@barnesandnoble.com', '', '', ''),
-    (15, 'Sally Woolforde', '8932 Bartelt Pass', '+86 868 896 0721', 'swoolfordee@sogou.com', '', '', ''),
-    (16, 'Chance Foresight', '3 Roth Court', '+7 774 930 8376', 'cforesightf@wufoo.com', '', '', ''),
-    (17, 'Cherish Thornthwaite', '30752 Lunder Trail', '+48 358 415 1560', 'cthornthwaiteg@nasa.gov', '', '', ''),
-    (18, 'Tania Gabites', '20643 Southridge Road', '+63 573 504 2713', 'tgabitesh@google.it', '', '', ''),
-    (19, 'Milzie Dagnall', '95 Elmside Alley', '+1 210 968 1081', 'mdagnalli@fotki.com', '', '', ''),
-    (20, 'Dulcea Sapseed', '71 Montana Crossing', '+1 714 552 1248', 'dsapseedj@yelp.com', '', '', ''),
-    (21, 'Adolpho Quickfall', '6 Vernon Hill', '+58 569 306 2309', 'aquickfallk@foxnews.com', '', '', ''),
-    (22, 'Tris Quest', '79721 Little Fleur Point', '+46 213 994 8413', 'tquestl@adobe.com', '', '', ''),
-    (23, 'Hamil Zarfati', '4 Fisk Park', '+375 576 510 9908', 'hzarfatim@mac.com', '', '', ''),
-    (24, 'Nolana Aubin', '77679 Badeau Drive', '+94 891 169 8767', 'naubinn@ycombinator.com', '', '', ''),
-    (25, 'Percival Brocket', '53 Buhler Center', '+62 687 889 9290', 'pbrocketo@cnn.com', '', '', ''),
-    (26, 'Delmore Evensden', '6 Maple Wood Terrace', '+351 469 184 2494', 'devensdenp@technorati.com', '', '', ''),
-    (27, 'Halsy Eyden', '0 Amoth Junction', '+420 787 828 1465', 'heydenq@a8.net', '', '', ''),
-    (28, 'Gabriel Keaveney', '229 Canary Junction', '+93 119 259 6597', 'gkeaveneyr@google.co.jp', '', '', ''),
-    (29, 'Riobard Claus', '36228 Park Meadow Point', '+61 345 792 5121', 'rclauss@xing.com', '', '', ''),
-    (30, 'Faina Danaher', '92698 Mandrake Point', '+1 334 378 6687', 'fdanahert@wsj.com', '', '', '');
+    (1, 'Wilhelmina Jacquemard', '88 Jenna Junction', '+249 468 510 5984', 'wjacquemard0@soundcloud.com', '', '', 'JASJRQ56S50Y724T'),
+    (2, 'Care Galland', '634 Banding Parkway', '+420 390 610 3240', 'cgalland1@macromedia.com', '', '', 'DWVCBG98F91K236Q'),
+    (3, 'Shandra Aikin', '19788 Orin Terrace', '+62 797 181 6151', 'saikin2@unicef.org', 'Innovatech Solutions', '01083699486', ''),
+    (4, 'Bell Pappi', '720 Troy Pass', '+63 118 877 2980', 'bpappi3@theglobeandmail.com', 'TechPro Systems', '71733797883', ''),
+    (5, 'Pearce Clissett', '31 Troy Alley', '+7 841 462 3287', 'pclissett4@deliciousdays.com', '', '', 'WKQNDD60T79A336F'),
+    (6, 'Odelia Swyer', '8477 Kipling Alley', '+86 460 470 1622', 'oswyer5@kickstarter.com', 'BrightStar Enterprises', '27374892328', ''),
+    (7, 'Rene Leek', '3 Forest Dale Drive', '+46 237 515 5297', 'rleek6@mayoclinic.com', '', '', 'TIXHFH23B93B158C'),
+    (8, 'Benoit Attwool', '1 Homewood Place', '+62 648 864 2420', 'battwool7@mail.ru', 'GlobalGrowth Ventures', '80578030458', ''),
+    (9, 'Nanny Midden', '2 Kedzie Circle', '+54 323 374 9278', 'nmidden8@chicagotribune.com', 'OptimaTech Services', '07768562249', ''),
+    (10, 'Pierette Lanyon', '66 Almo Avenue', '+60 500 286 1025', 'planyon9@123-reg.co.uk', '', '', 'JESQKI34V98X702A'),
+    (11, 'Earl Bateman', '43 East Hill', '+86 739 166 0837', 'ebatemana@usatoday.com', 'NexusLink Solutions', '05803936568', ''),
+    (12, 'Nicholle Worcester', '03 Amoth Junction', '+86 939 352 6540', 'nworcesterb@is.gd', '', '', 'SWPKEM29I05V400X'),
+    (13, 'Tiffanie Thrush', '4 Spenser Center', '+212 738 585 4918', 'tthrushc@zimbio.com', 'PrimeEdge Technologies', '66802152950', ''),
+    (14, 'Erroll Kennifeck', '6 Iowa Alley', '+86 551 218 0295', 'ekennifeckd@barnesandnoble.com', '', '', 'ULBSZN37A54Q244M'),
+    (15, 'Sally Woolforde', '8932 Bartelt Pass', '+86 868 896 0721', 'swoolfordee@sogou.com', 'ProActive Solutions', '31385911745', ''),
+    (16, 'Chance Foresight', '3 Roth Court', '+7 774 930 8376', 'cforesightf@wufoo.com', '', '', 'LHZDXM08L97H100H'),
+    (17, 'Cherish Thornthwaite', '30752 Lunder Trail', '+48 358 415 1560', 'cthornthwaiteg@nasa.gov', 'EliteConnect Enterprises', '14136049047', ''),
+    (18, 'Tania Gabites', '20643 Southridge Road', '+63 573 504 2713', 'tgabitesh@google.it', '', '', 'SEABFI62O29J894F'),
+    (19, 'Milzie Dagnall', '95 Elmside Alley', '+1 210 968 1081', 'mdagnalli@fotki.com', '', '', 'CVVTWE02Q34D867I'),
+    (20, 'Dulcea Sapseed', '71 Montana Crossing', '+1 714 552 1248', 'dsapseedj@yelp.com', 'QuantumTech Innovations', '65126842363', ''),
+    (21, 'Adolpho Quickfall', '6 Vernon Hill', '+58 569 306 2309', 'aquickfallk@foxnews.com', 'Visionary Labs', '78246249335', ''),
+    (22, 'Tris Quest', '79721 Little Fleur Point', '+46 213 994 8413', 'tquestl@adobe.com', '', '', 'CCYFDY17G16K364S'),
+    (23, 'Hamil Zarfati', '4 Fisk Park', '+375 576 510 9908', 'hzarfatim@mac.com', 'SmartSolutions Inc.', '11138445935', ''),
+    (24, 'Nolana Aubin', '77679 Badeau Drive', '+94 891 169 8767', 'naubinn@ycombinator.com', '', '', 'YKWYRF57B22A815R'),
+    (25, 'Percival Brocket', '53 Buhler Center', '+62 687 889 9290', 'pbrocketo@cnn.com', 'AgileEdge Technologies', '12745364066', ''),
+    (26, 'Delmore Evensden', '6 Maple Wood Terrace', '+351 469 184 2494', 'devensdenp@technorati.com', 'PowerGenix Industries', '71733797883', ''),
+    (27, 'Halsy Eyden', '0 Amoth Junction', '+420 787 828 1465', 'heydenq@a8.net', 'NovaTech Ventures', '25555793641', ''),
+    (28, 'Gabriel Keaveney', '229 Canary Junction', '+93 119 259 6597', 'gkeaveneyr@google.co.jp', '', '', 'QOGENY87U24W750A'),
+    (29, 'Riobard Claus', '36228 Park Meadow Point', '+61 345 792 5121', 'rclauss@xing.com', 'PowerGenix Industries', '76532982406', ''),
+    (30, 'Faina Danaher', '92698 Mandrake Point', '+1 334 378 6687', 'fdanahert@wsj.com', '', '', 'HTIOCR49U56E694K');
 
 
 
@@ -178,62 +178,27 @@ values
 insert into Prodotto
     (SKU, Nome, Prezzo, Descrizione, Tipo)
 values
-    (99063, 'justo', 2211.21, 'nunc vestibulum ante ipsum primis in faucibus orci luctus et', 'metus'),
+    (99063, 'PowerPro Elite', 2211.21, 'Il PC PowerPro Elite è un mostro di potenza. Con un processore ad alte prestazioni, una scheda grafica potente e un ampia capacità di archiviazione, ti offre la velocità e le prestazioni necessarie per le tue attività più esigenti.', 'Pc'),
 
-    (16677, 'ac', 2383.26, 'viverra pede ac diam cras', 'at'),
+    (16677, 'ErgoType Pro', 2383.26, 'La tastiera ErgoType Pro offre un design ergonomico avanzato per una \
+    digitazione comoda e senza sforzo. Dotata di tasti retroilluminati e funzionalità wireless, è perfetta per aumentare la produttività.', 'Tastiera'),
 
-    (91220, 'maecenas', 2130.28, 'vestibulum sit amet cursus id', 'sit'),
+    (91220, 'SleekBook Ultra', 2130.28, 'Il PC SleekBook Ultra è un concentrato di eleganza e prestazioni. Con un design sottile e leggero, è perfetto per chi cerca un equilibrio tra portabilità e prestazioni elevate.', 'Pc'),
 
-    (25939, 'sagittis', 1818.03, 'justo in blandit ultrices enim lorem', 'in'),
+    (25939, 'Gamer Delight', 1818.03, 'La tastiera Gamer Delight è pensata per i veri appassionati di gaming. Con tasti programmabili, retroilluminazione RGB personalizzabile e una risposta rapida, ti offre un esperienza di gioco superiore.', 'Tastiera'),
 
-    (29119, 'dui', 457.19, 'congue eget semper rutrum nulla nunc purus phasellus in felis donec semper sapien a libero nam dui proin', 'viverra'),
+    (29119, 'GamingBeast Pro', 457.19, 'Il PC GamingBeast Pro è progettato per i veri gamer. Con una scheda grafica ad alte prestazioni, un processore potente e una memoria espandibile, ti offre un esperienza di gioco immersiva e senza compromessi.', 'Pc'),
 
-    (92565, 'orci', 1984.8, 'habitasse platea dictumst etiam faucibus cursus urna ut tellus nulla ut erat id', 'elementum'),
+    (92565, 'SilentKey Stealth', 1984.8, 'La tastiera SilentKey Stealth offre una digitazione silenziosa grazie ai tasti a ridotto impatto acustico. Ideale per uffici e ambienti tranquilli, ti permette di lavorare senza disturbi.', 'Tastiera'),
 
-    (43228, 'viverra', 1235.51, 'curabitur at ipsum ac', 'proin'),
+    (43228, 'MultiTaskMaster Plus', 1235.51, 'Il PC MultiTaskMaster Plus è progettato per gestire multitasking intensi. Con un processore veloce, una memoria generosa e molte porte di connessione, puoi eseguire diverse attività contemporaneamente senza rallentamenti.', 'Pc'),
 
-    (74925, 'ante', 1468.2, 'orci luctus et ultrices', 'sapien'),
+    (74925, 'CompactFlex Ultra', 1468.2, 'La tastiera CompactFlex Ultra è estremamente compatta e flessibile. Puoi piegarla e portarla ovunque con te, senza rinunciare alla comodità di una tastiera completa.', 'tastiera'),
 
-    (42165, 'natoque', 2270.34, 'interdum venenatis turpis enim blandit mi in porttitor', 'vel'),
+    (42165, 'MediaCenter Hub', 2270.34, 'Il PC MediaCenter Hub è il centro multimediale perfetto per la tua casa. Con una scheda grafica di qualità e una connettività avanzata, trasforma il tuo salotto in un esperienza di intrattenimento completa.', 'Pc'),
 
-    (56758, 'sem', 2138.33, 'tristique est et tempus semper est quam pharetra magna ac consequat metus sapien ut nunc vestibulum ante ipsum primis', 'maecenas'),
+    (56758, 'WirelessWave Plus', 2138.33, 'La tastiera WirelessWave Plus ti offre la libertà del wireless. Con una connessione stabile e una portata estesa, puoi lavorare o giocare senza i limiti dei cavi.', 'Tastiera'),
 
-    (64890, 'hac', 1735.17, 'vulputate justo in blandit ultrices enim lorem ipsum dolor sit amet consectetuer adipiscing elit proin interdum mauris non', 'posuere'),
+    (64890, 'BusinessPro Workstation', 1735.17, 'l PC BusinessPro Workstation è progettato per le esigenze aziendali. Con una potenza di elaborazione affidabile, una sicurezza avanzata e funzionalità di gestione, ti aiuta a gestire le tue attività professionali con efficienza.', 'Pc'),
 
-    (82710, 'ut', 1544.1, 'magna ac consequat metus sapien ut nunc vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae', 'quisque'),
-
-    (11689, 'aliquam', 433.98, 'morbi ut odio cras mi pede malesuada in imperdiet et commodo vulputate justo in blandit ultrices enim', 'erat'),
-
-    (75149, 'curae', 1929.8, 'mus etiam vel augue vestibulum rutrum rutrum neque aenean auctor gravida sem praesent id massa id nisl venenatis lacinia aenean', 'justo'),
-
-    (12945, 'posuere', 694.99, 'magna vulputate luctus cum sociis natoque penatibus et magnis dis parturient montes', 'orci'),
-
-    (51307, 'donec', 2680.28, 'arcu adipiscing molestie hendrerit at vulputate vitae nisl aenean lectus', 'ornare'),
-
-    (38817, 'interdum', 1142.62, 'blandit non interdum in ante vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae duis', 'leo'),
-
-    (33831, 'neque', 1926.81, 'ut volutpat sapien arcu sed augue aliquam erat volutpat in congue etiam justo etiam', 'sapien'),
-
-    (94970, 'sit', 1169.13, 'est risus auctor sed', 'sapien'),
-
-    (50324, 'venenatis', 2342.26, 'nulla sed accumsan felis ut at', 'donec'),
-
-    (24485, 'scelerisque', 2041.33, 'tincidunt eu felis fusce posuere felis sed lacus morbi sem mauris laoreet ut', 'mattis'),
-
-    (18956, 'pellentesque', 1213.2, 'blandit nam nulla integer pede justo lacinia eget tincidunt eget tempus vel pede morbi porttitor lorem id ligula suspendisse', 'integer'),
-
-    (49068, 'praesent', 2262.25, 'rutrum nulla nunc purus phasellus in felis', 'lacinia'),
-
-    (25054, 'vestibulum', 587.65, 'sodales scelerisque mauris sit amet eros suspendisse', 'ultrices'),
-
-    (29726, 'vel', 2198.33, 'potenti in eleifend quam a odio in hac habitasse platea dictumst maecenas', 'lacinia'),
-
-    (20055, 'odio', 1293.79, 'volutpat quam pede lobortis ligula sit amet eleifend', 'nunc'),
-
-    (90772, 'orci', 973.81, 'lacus at turpis donec posuere metus vitae ipsum aliquam non mauris morbi non lectus aliquam sit amet', 'phasellus'),
-
-    (64128, 'donec', 2876.08, 'hac habitasse platea dictumst etiam faucibus cursus urna ut tellus nulla', 'libero'),
-
-    (80625, 'duis', 1718.88, 'posuere nonummy integer non velit donec diam neque vestibulum eget vulputate ut ultrices vel', 'vestibulum'),
-
-    (32653, 'ante', 2483.16, 'volutpat dui maecenas tristique est et tempus semper est quam', 'est');
+    (82710, 'ArtisticKey Design', 1544.1, 'La tastiera ArtisticKey Design è un mix perfetto di funzionalità e stile. Con un design elegante e tasti ergonomici, rende la digitazione un esperienza piacevole per gli occhi e le dita.', 'Tastiera');

@@ -134,13 +134,51 @@ void grafica(int i)
     }
 }
 
-void UtentiAzienda(PGconn *conn, PGresult *res)
+/*Inizio funzioni per query*/
+
+void UtentiAzienda(PGconn *conn, PGresult *res) // query 1
 {
-    res = PQexec(conn, "SELECT u.nome, u.azienda, u.pIva FROM Utente as u \ 
+    res = PQexec(conn, "SELECT count(*) as num, u.nome, u.azienda, u.pIva FROM Utente as u \ 
                    WHERE pIva IS NOT NULL GROUP BY u.nome, u.azienda, u.pIva");
     checkResults(res, conn);
     int tuple = PQntuples(res);
     int campi = PQnfields(res);
     printIntestazione(campi, res);
     printValue(tuple, campi, res);
+}
+
+void PagamentoUtente(PGconn *conn, PGresult *r) // query 2
+{
+}
+
+void PagamentoMetodoUtente(PGconn *conn, PGresult *r) // query 3
+{
+}
+
+void CarrelloUtenti(PGconn *conn, PGresult *r) // query 4
+{
+}
+
+void ProdottiMagazzino(PGconn *conn, PGresult *r) // query 5
+{
+}
+
+void OrdiniUtente(PGconn *conn, PGresult *r) // query 6
+{
+}
+
+void PagamentoUtente(PGconn *conn, PGresult *r) // query 7
+{
+}
+
+void SpedizioniVersoUtente(PGconn *conn, PGresult *r) // query 8
+{
+}
+
+void TracciamentoSpedizione(PGconn *conn, PGresult *r) // query 9
+{
+}
+
+void UtentiIvaCF(PGconn *conn, PGresult *r) // query 10
+{
 }
