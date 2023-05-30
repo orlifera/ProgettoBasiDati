@@ -2,8 +2,8 @@ CREATE TABLE Utente
 (
     Id INT NOT NULL,
     Nome VARCHAR(255),
-    Indirizzo VARCHAR(255),
-    Telefono VARCHAR(255),
+    Indirizzo VARCHAR(120),
+    Telefono VARCHAR(20),
     Email VARCHAR(255),
     Azienda VARCHAR(255),
     pIva VARCHAR(255),
@@ -15,7 +15,7 @@ CREATE TABLE Magazzino
 (
     Id INT NOT NULL,
     Indirizzo VARCHAR(255),
-    PRIMARY KEY(Id_Magazzino)
+    PRIMARY KEY(Id)
 );
 
 CREATE TABLE Prodotto
@@ -43,8 +43,8 @@ CREATE TABLE Carrello
     DataAggiunta TIMESTAMP,
     Quantita INT NOT NULL,
     Utente INT NOT NULL,
-    PRIMARY KEY(Id, DataAggiunta),
-    FOREIGN KEY(Utente) REFERENCES Utente(Id) ON DELETE CASCADE ON UPDATE SET NULL,
+    PRIMARY KEY(Id),
+    FOREIGN KEY(Utente) REFERENCES Utente(Id) ON DELETE CASCADE ON UPDATE SET NULL
 );
 
 CREATE TABLE Contenuto
@@ -53,7 +53,7 @@ CREATE TABLE Contenuto
     Carrello INT NOT NULL,
     PRIMARY KEY(Prodotto, Carrello),
     FOREIGN KEY(Prodotto) REFERENCES Prodotto(SKU) ON DELETE CASCADE ON UPDATE SET NULL,
-    FOREIGN KEY(Carrello) REFERENCES Carrello(Id) ON DELETE CASCADE ON UPDATE SET NULL,
+    FOREIGN KEY(Carrello) REFERENCES Carrello(Id) ON DELETE CASCADE ON UPDATE SET NULL
 );
 
 CREATE TABLE Pagamento
@@ -74,7 +74,7 @@ CREATE TABLE Spedizione
     DataSpedizione TIMESTAMP,
     DataConsegna TIMESTAMP,
     Peso INT NOT NULL,
-    PRIMARY KEY(Id_Spedizione),
+    PRIMARY KEY(Id)
 );
 
 CREATE TABLE Ordine
@@ -83,7 +83,7 @@ CREATE TABLE Ordine
     DataOrdine TIMESTAMP,
     Pagamento INT NOT NULL,
     Spedizione INT NOT NULL,
-    PRIMARY KEY(Id_Ordine),
+    PRIMARY KEY(Id),
     FOREIGN KEY(Pagamento) REFERENCES Pagamento(Id) ON DELETE CASCADE ON UPDATE SET NULL,
     FOREIGN KEY(Spedizione) REFERENCES Spedizione(Id) ON DELETE CASCADE ON UPDATE SET NULL
 );
@@ -92,9 +92,9 @@ CREATE TABLE Destinatario
 (
     Utente INT NOT NULL,
     Spedizione INT NOT NULL,
-    PRIMARY KEY(Utente, Tracking),
-    FOREIGN KEY(Utente) REFERENCES Utente(Id_Utente) ON DELETE CASCADE ON UPDATE SET NULL,
-    FOREIGN KEY(Spedizione) REFERENCES Spedizione(Id_Spedizione) ON DELETE CASCADE ON UPDATE SET NULL
+    PRIMARY KEY(Utente, Spedizione),
+    FOREIGN KEY(Utente) REFERENCES Utente(Id) ON DELETE CASCADE ON UPDATE SET NULL,
+    FOREIGN KEY(Spedizione) REFERENCES Spedizione(Id) ON DELETE CASCADE ON UPDATE SET NULL
 );
 
 

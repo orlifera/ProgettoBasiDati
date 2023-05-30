@@ -22,7 +22,7 @@ int main()
     /* Query 4. Trovare tutti i prodotti del carrello degli utenti */
     /* Query 5. Trovare che prodotti sono nel magazzino 3 */
     /* Query 6. Trovare il numero di ordini di un utente */
-    /* Query 7.  */
+    /* Query 7. Prezzo totale carrelli*/
     /* Query 8. Trovare tutte le spedizioni verso un utente */
     /* Query 9. Tracciamento spedizione, inserendo il numero di spedizione si restituisce la data di consegna
                 se la data di consegan > di data odierna o "Conseganto" altrimenti */
