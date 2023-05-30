@@ -104,7 +104,7 @@ CREATE TABLE Situato
     FOREIGN KEY (Prodotto) REFERENCES Prodotto (SKU) ON DELETE CASCADE ON UPDATE SET NULL
 );
 
-/* CARRELLO */
+/* CARRELLO guardare i trigger per farlo*/
 CREATE TABLE Carrello
 (
     Id INT NOT NULL,
@@ -114,3 +114,5 @@ CREATE TABLE Carrello
     PRIMARY KEY(Id, DataAggiunta),
     FOREIGN KEY(Utente) REFERENCES Utente(Id) ON DELETE CASCADE ON UPDATE SET NULL,
 );
+
+https://www.mockaroo.com
