@@ -62,6 +62,7 @@ CREATE TABLE Pagamento
     DataPagamento TIMESTAMP,
     Metodo VARCHAR(255),
     PrezzoSpedizione FLOAT,
+    PrezzoTotale FLOAT,
     Carrello INT NOT NULL,
     PRIMARY KEY(Id),
     FOREIGN KEY(Carrello) REFERENCES Carrello(Id) ON DELETE CASCADE ON UPDATE SET NULL
@@ -98,17 +99,10 @@ CREATE TABLE Destinatario
 
 
 
-/*
 
- ____   __  ____   __   __     __   _  _  ____  __ _  ____  __        
-(  _ \ /  \(  _ \ /  \ (  )   / _\ ( \/ )(  __)(  ( \(_  _)/  \       
- ) __/(  O )) __/(  O )/ (_/\/    \/ \/ \ ) _) /    /  )( (  O )      
-(__)   \__/(__)   \__/ \____/\_/\_/\_)(_/(____)\_)__) (__) \__/   
-
-*/
 
 /* UTENTE DA FINIRE CON I VARI DATI MANCANTI*/
-insert into Utente
+INSERT INTO Utente
     (Id, Nome, Indirizzo, Telefono, Email, Azienda, pIva, CF)
 VALUES
     (1, 'Wilhelmina Jacquemard', '88 Jenna Junction', '+249 468 510 5984', 'wjacquemard0@soundcloud.com', '', '', 'JASJRQ56S50Y724T'),
@@ -143,7 +137,7 @@ VALUES
     (30, 'Faina Danaher', '92698 Mandrake Point', '+1 334 378 6687', 'fdanahert@wsj.com', '', '', 'HTIOCR49U56E694K');
 
 
-/* MAGAZZINO */
+
 insert into Magazzino
     (Id, Indirizzo)
 values
@@ -179,66 +173,32 @@ values
     (13687, '7020 Carberry Street');
 
 
+
 /* PRODOTTO */
 insert into Prodotto
     (SKU, Nome, Prezzo, Descrizione, Tipo)
 values
-    (99063, 'justo', 2211.21, 'nunc vestibulum ante ipsum primis in faucibus orci luctus et', 'metus'),
+    (99063, 'PowerPro Elite', 2211.21, 'Il PC PowerPro Elite è un mostro di potenza. Con un processore ad alte prestazioni, una scheda grafica potente e un ampia capacità di archiviazione, ti offre la velocità e le prestazioni necessarie per le tue attività più esigenti.', 'Pc'),
 
-    (16677, 'ac', 2383.26, 'viverra pede ac diam cras', 'at'),
+    (16677, 'ErgoType Pro', 2383.26, 'La tastiera ErgoType Pro offre un design ergonomico avanzato per una \
+    digitazione comoda e senza sforzo. Dotata di tasti retroilluminati e funzionalità wireless, è perfetta per aumentare la produttività.', 'Tastiera'),
 
-    (91220, 'maecenas', 2130.28, 'vestibulum sit amet cursus id', 'sit'),
+    (91220, 'SleekBook Ultra', 2130.28, 'Il PC SleekBook Ultra è un concentrato di eleganza e prestazioni. Con un design sottile e leggero, è perfetto per chi cerca un equilibrio tra portabilità e prestazioni elevate.', 'Pc'),
 
-    (25939, 'sagittis', 1818.03, 'justo in blandit ultrices enim lorem', 'in'),
+    (25939, 'Gamer Delight', 1818.03, 'La tastiera Gamer Delight è pensata per i veri appassionati di gaming. Con tasti programmabili, retroilluminazione RGB personalizzabile e una risposta rapida, ti offre un esperienza di gioco superiore.', 'Tastiera'),
 
-    (29119, 'dui', 457.19, 'congue eget semper rutrum nulla nunc purus phasellus in felis donec semper sapien a libero nam dui proin', 'viverra'),
+    (29119, 'GamingBeast Pro', 457.19, 'Il PC GamingBeast Pro è progettato per i veri gamer. Con una scheda grafica ad alte prestazioni, un processore potente e una memoria espandibile, ti offre un esperienza di gioco immersiva e senza compromessi.', 'Pc'),
 
-    (92565, 'orci', 1984.8, 'habitasse platea dictumst etiam faucibus cursus urna ut tellus nulla ut erat id', 'elementum'),
+    (92565, 'SilentKey Stealth', 1984.8, 'La tastiera SilentKey Stealth offre una digitazione silenziosa grazie ai tasti a ridotto impatto acustico. Ideale per uffici e ambienti tranquilli, ti permette di lavorare senza disturbi.', 'Tastiera'),
 
-    (43228, 'viverra', 1235.51, 'curabitur at ipsum ac', 'proin'),
+    (43228, 'MultiTaskMaster Plus', 1235.51, 'Il PC MultiTaskMaster Plus è progettato per gestire multitasking intensi. Con un processore veloce, una memoria generosa e molte porte di connessione, puoi eseguire diverse attività contemporaneamente senza rallentamenti.', 'Pc'),
 
-    (74925, 'ante', 1468.2, 'orci luctus et ultrices', 'sapien'),
+    (74925, 'CompactFlex Ultra', 1468.2, 'La tastiera CompactFlex Ultra è estremamente compatta e flessibile. Puoi piegarla e portarla ovunque con te, senza rinunciare alla comodità di una tastiera completa.', 'tastiera'),
 
-    (42165, 'natoque', 2270.34, 'interdum venenatis turpis enim blandit mi in porttitor', 'vel'),
+    (42165, 'MediaCenter Hub', 2270.34, 'Il PC MediaCenter Hub è il centro multimediale perfetto per la tua casa. Con una scheda grafica di qualità e una connettività avanzata, trasforma il tuo salotto in un esperienza di intrattenimento completa.', 'Pc'),
 
-    (56758, 'sem', 2138.33, 'tristique est et tempus semper est quam pharetra magna ac consequat metus sapien ut nunc vestibulum ante ipsum primis', 'maecenas'),
+    (56758, 'WirelessWave Plus', 2138.33, 'La tastiera WirelessWave Plus ti offre la libertà del wireless. Con una connessione stabile e una portata estesa, puoi lavorare o giocare senza i limiti dei cavi.', 'Tastiera'),
 
-    (64890, 'hac', 1735.17, 'vulputate justo in blandit ultrices enim lorem ipsum dolor sit amet consectetuer adipiscing elit proin interdum mauris non', 'posuere'),
+    (64890, 'BusinessPro Workstation', 1735.17, 'l PC BusinessPro Workstation è progettato per le esigenze aziendali. Con una potenza di elaborazione affidabile, una sicurezza avanzata e funzionalità di gestione, ti aiuta a gestire le tue attività professionali con efficienza.', 'Pc'),
 
-    (82710, 'ut', 1544.1, 'magna ac consequat metus sapien ut nunc vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae', 'quisque'),
-
-    (11689, 'aliquam', 433.98, 'morbi ut odio cras mi pede malesuada in imperdiet et commodo vulputate justo in blandit ultrices enim', 'erat'),
-
-    (75149, 'curae', 1929.8, 'mus etiam vel augue vestibulum rutrum rutrum neque aenean auctor gravida sem praesent id massa id nisl venenatis lacinia aenean', 'justo'),
-
-    (12945, 'posuere', 694.99, 'magna vulputate luctus cum sociis natoque penatibus et magnis dis parturient montes', 'orci'),
-
-    (51307, 'donec', 2680.28, 'arcu adipiscing molestie hendrerit at vulputate vitae nisl aenean lectus', 'ornare'),
-
-    (38817, 'interdum', 1142.62, 'blandit non interdum in ante vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae duis', 'leo'),
-
-    (33831, 'neque', 1926.81, 'ut volutpat sapien arcu sed augue aliquam erat volutpat in congue etiam justo etiam', 'sapien'),
-
-    (94970, 'sit', 1169.13, 'est risus auctor sed', 'sapien'),
-
-    (50324, 'venenatis', 2342.26, 'nulla sed accumsan felis ut at', 'donec'),
-
-    (24485, 'scelerisque', 2041.33, 'tincidunt eu felis fusce posuere felis sed lacus morbi sem mauris laoreet ut', 'mattis'),
-
-    (18956, 'pellentesque', 1213.2, 'blandit nam nulla integer pede justo lacinia eget tincidunt eget tempus vel pede morbi porttitor lorem id ligula suspendisse', 'integer'),
-
-    (49068, 'praesent', 2262.25, 'rutrum nulla nunc purus phasellus in felis', 'lacinia'),
-
-    (25054, 'vestibulum', 587.65, 'sodales scelerisque mauris sit amet eros suspendisse', 'ultrices'),
-
-    (29726, 'vel', 2198.33, 'potenti in eleifend quam a odio in hac habitasse platea dictumst maecenas', 'lacinia'),
-
-    (20055, 'odio', 1293.79, 'volutpat quam pede lobortis ligula sit amet eleifend', 'nunc'),
-
-    (90772, 'orci', 973.81, 'lacus at turpis donec posuere metus vitae ipsum aliquam non mauris morbi non lectus aliquam sit amet', 'phasellus'),
-
-    (64128, 'donec', 2876.08, 'hac habitasse platea dictumst etiam faucibus cursus urna ut tellus nulla', 'libero'),
-
-    (80625, 'duis', 1718.88, 'posuere nonummy integer non velit donec diam neque vestibulum eget vulputate ut ultrices vel', 'vestibulum'),
-
-    (32653, 'ante', 2483.16, 'volutpat dui maecenas tristique est et tempus semper est quam', 'est');
+    (82710, 'ArtisticKey Design', 1544.1, 'La tastiera ArtisticKey Design è un mix perfetto di funzionalità e stile. Con un design elegante e tasti ergonomici, rende la digitazione un esperienza piacevole per gli occhi e le dita.', 'Tastiera');
