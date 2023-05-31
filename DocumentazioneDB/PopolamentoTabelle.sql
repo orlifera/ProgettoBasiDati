@@ -25,16 +25,9 @@ CREATE TABLE Prodotto
     Prezzo FLOAT,
     Descrizione TEXT,
     Tipo VARCHAR(255),
-    PRIMARY KEY(SKU)
-);
-
-CREATE TABLE Situato
-(
     Magazzino INT NOT NULL,
-    Prodotto INT NOT NULL,
-    PRIMARY KEY(Magazzino, Prodotto),
-    FOREIGN KEY(Magazzino) REFERENCES Magazzino(Id) ON DELETE CASCADE ON UPDATE SET NULL,
-    FOREIGN KEY (Prodotto) REFERENCES Prodotto (SKU) ON DELETE CASCADE ON UPDATE SET NULL
+    PRIMARY KEY(SKU),
+    FOREIGN KEY(Magazzino) REFERENCES Magazzino(Id) ON DELETE CASCADE ON UPDATE SET NULL
 );
 
 CREATE TABLE Carrello
@@ -74,7 +67,9 @@ CREATE TABLE Spedizione
     DataSpedizione TIMESTAMP,
     DataConsegna TIMESTAMP,
     Peso INT NOT NULL,
-    PRIMARY KEY(Id)
+    Utente Id NOT NULL,
+    PRIMARY KEY(Id),
+    FOREIGN KEY(Utente) REFERENCES Utente(Id) ON DELETE CASCADE ON UPDATE SET NULL,
 );
 
 CREATE TABLE Ordine
@@ -88,20 +83,19 @@ CREATE TABLE Ordine
     FOREIGN KEY(Spedizione) REFERENCES Spedizione(Id) ON DELETE CASCADE ON UPDATE SET NULL
 );
 
-CREATE TABLE Destinatario
-(
-    Utente INT NOT NULL,
-    Spedizione INT NOT NULL,
-    PRIMARY KEY(Utente, Spedizione),
-    FOREIGN KEY(Utente) REFERENCES Utente(Id) ON DELETE CASCADE ON UPDATE SET NULL,
-    FOREIGN KEY(Spedizione) REFERENCES Spedizione(Id) ON DELETE CASCADE ON UPDATE SET NULL
-);
+
+/*
+
+ _____             _                   _       
+|  _  |___ ___ ___| |___ _____ ___ ___| |_ ___ 
+|   __| . | . | . | | .'|     | -_|   |  _| . |
+|__|  |___|  _|___|_|__,|_|_|_|___|_|_|_| |___|
+          |_|  
+
+*/
 
 
-
-
-
-/* UTENTE DA FINIRE CON I VARI DATI MANCANTI*/
+/* UTENTE */
 INSERT INTO Utente
     (Id, Nome, Indirizzo, Telefono, Email, Azienda, pIva, CF)
 VALUES
@@ -137,7 +131,7 @@ VALUES
     (30, 'Faina Danaher', '92698 Mandrake Point', '+1 334 378 6687', 'fdanahert@wsj.com', '', '', 'HTIOCR49U56E694K');
 
 
-
+/* MAGAZZINO */
 insert into Magazzino
     (Id, Indirizzo)
 values
@@ -145,60 +139,181 @@ values
     (76934, '1461 Green Ridge Circle'),
     (38043, '9 Johnson Plaza'),
     (89852, '92 Duke Circle'),
-    (45419, '113 Waubesa Pass'),
-    (73214, '53171 Forest Junction'),
-    (76529, '2 Paget Avenue'),
-    (94046, '0073 Service Drive'),
-    (19889, '57 Fair Oaks Avenue'),
-    (38958, '904 Grayhawk Alley'),
-    (25760, '3446 Division Pass'),
-    (93364, '5924 Spaight Terrace'),
-    (31478, '5641 Commercial Place'),
-    (70333, '8275 Debra Street'),
-    (58403, '935 Memorial Avenue'),
-    (69714, '40 Clove Drive'),
-    (95014, '4 Knutson Terrace'),
-    (28412, '894 Morning Park'),
-    (39481, '68836 Scott Circle'),
-    (22322, '7 Dayton Trail'),
-    (38455, '846 Blue Bill Park Plaza'),
-    (53569, '4 Buell Center'),
-    (81825, '5872 Fisk Terrace'),
-    (11988, '8 Sunbrook Park'),
-    (43523, '05 Debra Lane'),
-    (47023, '64897 Katie Park'),
-    (42219, '58109 Hermina Avenue'),
-    (65429, '05690 Lerdahl Avenue'),
-    (38387, '5244 Mayer Parkway'),
-    (13687, '7020 Carberry Street');
-
+    (45419, '113 Waubesa Pass');
 
 
 /* PRODOTTO */
 insert into Prodotto
-    (SKU, Nome, Prezzo, Descrizione, Tipo)
+    (SKU, Nome, Prezzo, Descrizione, Tipo, Magazzino)
 values
-    (99063, 'PowerPro Elite', 2211.21, 'Il PC PowerPro Elite è un mostro di potenza. Con un processore ad alte prestazioni, una scheda grafica potente e un ampia capacità di archiviazione, ti offre la velocità e le prestazioni necessarie per le tue attività più esigenti.', 'Pc'),
+    (99063, 'PowerPro Elite', 2211.21, 'Il PC PowerPro Elite è un mostro di potenza. Con un processore ad alte prestazioni, una scheda grafica potente e un ampia capacità di archiviazione, ti offre la velocità e le prestazioni necessarie per le tue attività più esigenti.', 'Pc', 27755),
+    (16677, 'ErgoType Pro', 2383.26, 'La tastiera ErgoType Pro offre un design ergonomico avanzato per una digitazione comoda e senza sforzo. Dotata di tasti retroilluminati e funzionalità wireless, è perfetta per aumentare la produttività.', 'Tastiera', 27755),
+    (91220, 'SleekBook Ultra', 2130.28, 'Il PC SleekBook Ultra è un concentrato di eleganza e prestazioni. Con un design sottile e leggero, è perfetto per chi cerca un equilibrio tra portabilità e prestazioni elevate.', 'Pc', 27755),
+    (25939, 'Gamer Delight', 1818.03, 'La tastiera Gamer Delight è pensata per i veri appassionati di gaming. Con tasti programmabili, retroilluminazione RGB personalizzabile e una risposta rapida, ti offre un esperienza di gioco superiore.', 'Tastiera', 76934),
+    (29119, 'GamingBeast Pro', 457.19, 'Il PC GamingBeast Pro è progettato per i veri gamer. Con una scheda grafica ad alte prestazioni, un processore potente e una memoria espandibile, ti offre un esperienza di gioco immersiva e senza compromessi.', 'Pc', 38043),
+    (92565, 'SilentKey Stealth', 1984.8, 'La tastiera SilentKey Stealth offre una digitazione silenziosa grazie ai tasti a ridotto impatto acustico. Ideale per uffici e ambienti tranquilli, ti permette di lavorare senza disturbi.', 'Tastiera', 38043),
+    (43228, 'MultiTaskMaster Plus', 1235.51, 'Il PC MultiTaskMaster Plus è progettato per gestire multitasking intensi. Con un processore veloce, una memoria generosa e molte porte di connessione, puoi eseguire diverse attività contemporaneamente senza rallentamenti.', 'Pc', 89852),
+    (74925, 'CompactFlex Ultra', 1468.2, 'La tastiera CompactFlex Ultra è estremamente compatta e flessibile. Puoi piegarla e portarla ovunque con te, senza rinunciare alla comodità di una tastiera completa.', 'tastiera', 89852),
+    (42165, 'MediaCenter Hub', 2270.34, 'Il PC MediaCenter Hub è il centro multimediale perfetto per la tua casa. Con una scheda grafica di qualità e una connettività avanzata, trasforma il tuo salotto in un esperienza di intrattenimento completa.', 'Pc', 89852),
+    (56758, 'WirelessWave Plus', 2138.33, 'La tastiera WirelessWave Plus ti offre la libertà del wireless. Con una connessione stabile e una portata estesa, puoi lavorare o giocare senza i limiti dei cavi.', 'Tastiera', 45419),
+    (64890, 'BusinessPro Workstation', 1735.17, 'l PC BusinessPro Workstation è progettato per le esigenze aziendali. Con una potenza di elaborazione affidabile, una sicurezza avanzata e funzionalità di gestione, ti aiuta a gestire le tue attività professionali con efficienza.', 'Pc', 45419),
+    (82710, 'ArtisticKey Design', 1544.1, 'La tastiera ArtisticKey Design è un mix perfetto di funzionalità e stile. Con un design elegante e tasti ergonomici, rende la digitazione un esperienza piacevole per gli occhi e le dita.', 'Tastiera', 45419);
 
-    (16677, 'ErgoType Pro', 2383.26, 'La tastiera ErgoType Pro offre un design ergonomico avanzato per una \
-    digitazione comoda e senza sforzo. Dotata di tasti retroilluminati e funzionalità wireless, è perfetta per aumentare la produttività.', 'Tastiera'),
 
-    (91220, 'SleekBook Ultra', 2130.28, 'Il PC SleekBook Ultra è un concentrato di eleganza e prestazioni. Con un design sottile e leggero, è perfetto per chi cerca un equilibrio tra portabilità e prestazioni elevate.', 'Pc'),
+/* CARRELLO */
+insert into Carrello 
+    (Id, DataAggiunta, Quantita, Utente) 
+values 
+    (798, '2023-06-27 18:25:38', 2, 27),
+    (810, '2023-05-11 01:45:10', 1, 26),
+    (100, '2023-06-17 14:18:15', 7, 9),
+    (486, '2023-05-20 04:24:56', 1, 6),
+    (859, '2023-06-27 18:25:38', 3, 28),
+    (888, '2023-04-25 04:24:56', 3, 21),
+    (813, '2023-05-03 06:18:48', 6, 27),
+    (942, '2023-04-26 07:41:46', 6, 25),
+    (407, '2023-04-18 15:00:18', 5, 9),
+    (418, '2023-05-11 09:06:54', 2, 26),
+    (577, '2023-04-06 14:18:15', 2, 6),
+    (314, '2023-06-02 06:18:48', 1, 1),
+    (474, '2023-06-09 20:10:57', 1, 15),
+    (250, '2023-05-09 10:51:45', 6, 8),
+    (897, '2023-04-30 23:15:49', 1, 18),
+    (534, '2023-04-03 23:15:49', 7, 5),
+    (421, '2023-04-27 07:41:46', 3, 22),
+    (338, '2023-05-24 19:14:48', 7, 23),
+    (569, '2023-04-03 18:25:38', 1, 3),
+    (866, '2023-05-30 20:10:57', 3, 18),
+    (161, '2023-06-19 18:30:16', 4, 11),
+    (427, '2023-05-12 22:47:05', 1, 24),
+    (794, '2023-04-18 01:45:10', 7, 4),
+    (041, '2023-04-15 09:23:52', 1, 6),
+    (073, '2023-05-19 17:25:52', 4, 12),
+    (308, '2023-04-11 19:14:48', 6, 4),
+    (987, '2023-06-27 01:45:10', 4, 17),
+    (374, '2023-04-07 18:30:16', 1, 8),
+    (050, '2023-06-18 06:54:56', 3, 11),
+    (293, '2023-06-14 22:47:05', 3, 9);
 
-    (25939, 'Gamer Delight', 1818.03, 'La tastiera Gamer Delight è pensata per i veri appassionati di gaming. Con tasti programmabili, retroilluminazione RGB personalizzabile e una risposta rapida, ti offre un esperienza di gioco superiore.', 'Tastiera'),
 
-    (29119, 'GamingBeast Pro', 457.19, 'Il PC GamingBeast Pro è progettato per i veri gamer. Con una scheda grafica ad alte prestazioni, un processore potente e una memoria espandibile, ti offre un esperienza di gioco immersiva e senza compromessi.', 'Pc'),
+/* CONTENUTO */
+insert into Contenuto
+    (Prodotto, Carrello)
+values
+    (99063, 798),
+    (16677, 798),
+    (91220, 798),
+    (16677, 810),
+    (25939, 810),
+    (29119, 810),
+    (92565, 100),
+    (43228, 100),
+    (25939, 486),
+    (16677, 859),
+    (29119, 859),
+    (56758, 888),
+    (56758, 813),
+    (64890, 813),
+    (92565, 942),
+    (64890, 942),
+    (43228, 407),
+    (42165, 407),
+    (92565, 418),
+    (92565, 577);
 
-    (92565, 'SilentKey Stealth', 1984.8, 'La tastiera SilentKey Stealth offre una digitazione silenziosa grazie ai tasti a ridotto impatto acustico. Ideale per uffici e ambienti tranquilli, ti permette di lavorare senza disturbi.', 'Tastiera'),
 
-    (43228, 'MultiTaskMaster Plus', 1235.51, 'Il PC MultiTaskMaster Plus è progettato per gestire multitasking intensi. Con un processore veloce, una memoria generosa e molte porte di connessione, puoi eseguire diverse attività contemporaneamente senza rallentamenti.', 'Pc'),
+/* PAGAMENTO */
+insert into Pagamneto 
+    (Id, DataPagamento, Metodo, PrezzoSpedizione, Carrello) 
+values 
+    (9202, '2023-05-29 20:11:56', 'Carta', 13.62, 798),
+    (3231, '2023-06-29 18:13:02', 'Bonifico', 14.96, 810),
+    (5439, '2023-06-27 13:07:49', 'Bonifico', 7.27, 100),
+    (8707, '2023-04-08 10:55:10', 'Carta', 11.71, 486),
+    (9547, '2023-06-07 22:13:45', 'Paypal', 7.8, 859),
+    (4912, '2023-04-18 03:51:47', 'Paypal', 13.16, 888),
+    (1491, '2023-04-23 03:55:45', 'Carta', 11.57, 813),
+    (7698, '2023-05-09 18:12:38', 'Paypal', 6.78, 942),
+    (1040, '2023-05-24 02:48:08', 'Paypal', 14.22, 407),
+    (2929, '2023-05-27 20:25:08', 'Carta', 11.41, 418),
+    (1158, '2023-04-28 19:02:02', 'Bonifico', 7.7, 577),
+    (5965, '2023-05-11 09:45:16', 'Bonifico', 14.73, 314),
+    (9777, '2023-05-05 19:05:50', 'Carta', 12.23, 474),
+    (1816, '2023-05-30 03:21:48', 'Bonifico', 6.53, 250),
+    (5828, '2023-04-09 19:36:08', 'Bonifico', 13.62, 897);
+    /*
+    (9844, '2023-05-18 10:13:44', 'Carta', 7.8, 534),
+    (9725, '2023-05-01 08:43:20', 'Paypal', 5.32, 421),
+    (3126, '2023-05-09 12:33:09', 'Paypal', 13.97, 338),
+    (7851, '2023-06-28 02:19:25', 'Carta', 5.87, 569),
+    (4023, '2023-05-20 22:12:52', 'Paypal', 12.52, 866),
+    (8188, '2023-06-16 11:15:53', 'Paypal', 14.83, 161),
+    (6677, '2023-06-22 14:45:25', 'Paypal', 7.94, 427),
+    (2203, '2023-04-10 11:20:07', 'Bonifico', 14.03, 794),
+    (7455, '2023-04-23 18:32:43', 'Bonifico', 8.38, 041),
+    (4655, '2023-04-17 10:18:32', 'Bonifico', 8.48, 073),
+    (1836, '2023-04-20 01:37:31', 'Paypal', 10.23, 308),
+    (1435, '2023-06-11 03:40:20', 'Paypal', 5.76, 987),
+    (1082, '2023-04-06 15:22:39', 'Paypal', 9.49, 374),
+    (6681, '2023-04-29 02:27:30', 'Paypal', 5.62, 050),
+    (9873, '2023-05-14 07:29:48', 'Paypal', 11.46, 293);
+*/
 
-    (74925, 'CompactFlex Ultra', 1468.2, 'La tastiera CompactFlex Ultra è estremamente compatta e flessibile. Puoi piegarla e portarla ovunque con te, senza rinunciare alla comodità di una tastiera completa.', 'tastiera'),
 
-    (42165, 'MediaCenter Hub', 2270.34, 'Il PC MediaCenter Hub è il centro multimediale perfetto per la tua casa. Con una scheda grafica di qualità e una connettività avanzata, trasforma il tuo salotto in un esperienza di intrattenimento completa.', 'Pc'),
+/* SPEDIZIONE */
+insert into Spedizione 
+    (Id, DataSpedizione, DataConsegna, Peso, Utente) 
+values 
+    (2500, '2023-06-25 20:11:56', '2023-06-26 18:13:02', 28, 1),
+    (1400, '2023-06-22 10:55:10', '2023-06-23 20:11:56', 45, 1),
+    (5815, '2023-06-23 02:48:08', '2023-06-22 03:40:20', 116, 1),
+    (3828, '2023-06-21 18:13:02', '2023-06-19 02:48:08', 55, 2),
+    (7074, '2023-06-29 18:13:02', '2023-06-26 03:40:20', 54, 5),
+    (4014, '2023-06-22 02:48:08', '2023-06-28 12:33:09', 92, 28),
+    (6444, '2023-06-23 03:40:20', '2023-06-23 07:29:48', 50, 16),
+    (3275, '2023-06-24 18:32:43', '2023-06-22 02:48:08', 100, 16),
+    (1782, '2023-06-23 03:40:20', '2023-06-21 20:11:56', 38, 11),
+    (5547, '2023-06-23 10:55:10', '2023-06-26 11:15:53', 40, 29);
+    /*
+    (7988, '2023-06-24 18:13:02', '2023-06-24 18:13:02', 51),
+    (3135, '2023-06-30 18:32:43', '2023-06-22 18:32:43', 138),
+    (2187, '2023-06-24 07:29:48', '2023-06-27 11:15:53', 84),
+    (7225, '2023-06-25 10:55:10', '2023-06-25 18:13:02', 128),
+    (5621, '2023-06-27 18:13:02', '2023-06-23 02:19:25', 147),
+    (1752, '2023-06-20 02:19:25', '2023-06-23 08:30:55', 131),
+    (5319, '2023-06-23 20:11:56', '2023-06-18 07:29:48', 48),
+    (7954, '2023-06-20 08:30:55', '2023-06-19 14:32:24', 129),
+    (7001, '2023-06-16 02:19:25', '2023-06-20 14:32:24', 76),
+    (7245, '2023-06-27 12:33:09', '2023-06-23 18:32:43', 44),
+    (2970, '2023-06-15 07:29:48', '2023-06-23 02:48:08', 45),
+    (5010, '2023-06-16 20:11:56', '2023-06-23 23:10:03', 109),
+    (8723, '2023-06-16 18:32:43', '2023-06-22 15:10:57', 52),
+    (5499, '2023-06-25 12:33:09', '2023-06-26 02:48:08', 73),
+    (8848, '2023-06-26 10:55:10', '2023-06-27 20:11:56', 144),
+    (1570, '2023-06-28 23:52:00', '2023-06-20 15:22:39', 119),
+    (2904, '2023-06-23 15:22:39', '2023-06-18 12:33:09', 137),
+    (8923, '2023-06-30 20:11:56', '2023-06-17 15:10:57', 88),
+    (2392, '2023-06-27 15:22:39', '2023-06-19 07:29:48', 130),
+    (1495, '2023-06-18 23:52:00', '2023-06-29 15:22:39', 26);
+*/
 
-    (56758, 'WirelessWave Plus', 2138.33, 'La tastiera WirelessWave Plus ti offre la libertà del wireless. Con una connessione stabile e una portata estesa, puoi lavorare o giocare senza i limiti dei cavi.', 'Tastiera'),
 
-    (64890, 'BusinessPro Workstation', 1735.17, 'l PC BusinessPro Workstation è progettato per le esigenze aziendali. Con una potenza di elaborazione affidabile, una sicurezza avanzata e funzionalità di gestione, ti aiuta a gestire le tue attività professionali con efficienza.', 'Pc'),
-
-    (82710, 'ArtisticKey Design', 1544.1, 'La tastiera ArtisticKey Design è un mix perfetto di funzionalità e stile. Con un design elegante e tasti ergonomici, rende la digitazione un esperienza piacevole per gli occhi e le dita.', 'Tastiera');
+/* ORDINE */
+insert into Ordine 
+    (Id, DataOrdine, Pagamento, Spedizione) 
+values 
+    (8982, '2023-05-25', 9202, 2500),
+    (5893, '2023-04-13', 3231, 2500),
+    (4545, '2023-06-19', 5439, 1400),
+    (1676, '2023-04-10', 8707, 5815),
+    (6071, '2023-06-15', 9547, 5815),
+    (2137, '2023-05-18', 4912, 3828),
+    (1161, '2023-05-06', 1491, 7074),
+    (3832, '2023-04-02', 7698, 7074),
+    (7323, '2023-05-16', 1040, 4014),
+    (2683, '2023-04-30', 2929, 6444),
+    (2277, '2023-04-18', 1158, 3275),
+    (2907, '2023-04-28', 5965, 3275),
+    (8551, '2023-05-11', 9777, 3275),
+    (5642, '2023-05-15', 1816, 1782),
+    (5108, '2023-05-27', 5828, 5547);
