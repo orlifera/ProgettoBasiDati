@@ -36,16 +36,20 @@ int main()
             break;
 
         case 5:
-            cout << "Query 5. Trovare che prodotti sono in un certo magazzino dato il suo codice\
-                 identificativo.\n";
+            cout << "Query 5.\n";
+            listaMagazzino(con, r);
+            ProdottiMagazzino(con, r);
             break;
 
         case 6:
-            cout << "Query 6. Trovare il numero di ordini di un utente.\n";
+            cout << "Query 6.\n";
+            OrdiniUtente(con, r);
             break;
 
         case 7:
-            cout << "Query 7. Prezzo totale di ogni carrello\n";
+            cout << "Query 7.\n";
+            listaCarrelli(con, r);
+            TotaleCarrello(con, r);
             break;
 
         case 8:
@@ -64,16 +68,6 @@ int main()
             break;
         }
     }
-
-    /* Query 1. Trovare tutti gli utenti che sono azienda */
-
-    /* Query 2. Trovare tutti i pagamenti di un certo utente */
-
-    /* Query 3. Trovare tutti i pagamenti con un certo metodo di un certo utente */
-    /* Query 4. Trovare tutti i prodotti del carrello degli utenti */
-    /* Query 5. Trovare che prodotti sono nel magazzino 3 */
-    /* Query 6. Trovare il numero di ordini di un utente */
-    /* Query 7. Prezzo totale di tutti i carrelli*/
     /* Query 8. Trovare tutte le spedizioni verso un utente */
     /* Query 9. Tracciamento spedizione, inserendo il numero di spedizione si restituisce la data di consegna
                 se la data di consegan > di data odierna o "Conseganto" altrimenti */

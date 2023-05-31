@@ -106,12 +106,20 @@ void listaMagazzino(PGconn *conn, PGresult *res)
     int campi = PQnfields(res);
     printValue(tuple, campi, res);
 }
+
+void listaCarrelli(PGconn *conn, PGresult *r)
+{
+    cout << "Scegliere uno dei carrelli elencati: " << endl;
+    r = PQexec(conn, "Select c.id FROM carrello as c");
+    int tuple = PQntuples(r);
+    int campi = PQnfields(r);
+    printValue(tuple, campi, r);
+}
 /*Inizio funzioni per query*/
 
 void UtentiAzienda(PGconn *conn, PGresult *res) // query 1
 {
-    res = PQexec(conn, "SELECT count(*) as num, u.nome, u.azienda, u.pIva FROM Utente as u \
-                   WHERE pIva IS NOT NULL GROUP BY u.nome, u.azienda, u.pIva");
+    res = PQexec(conn, "SELECT count(*) as num, u.nome, u.azienda, u.pIva FROM Utente as u WHERE pIva IS NOT NULL GROUP BY u.nome, u.azienda, u.pIva");
     checkResults(res, conn);
     int tuple = PQntuples(res);
     int campi = PQnfields(res);
@@ -130,6 +138,11 @@ void PagamentoUtente(PGconn *conn, PGresult *r) // query 2
 
     const char *par = utente.c_str();
     r = PQexecPrepared(conn, "query_pagamento", 1, &par, NULL, 0, 0);
+    checkResults(r, conn);
+    int tuple = PQntuples(r);
+    int campi = PQnfields(r);
+    printIntestazione(campi, r);
+    printValue(tuple, campi, r);
 }
 
 void PagamentoMetodoUtente(PGconn *conn, PGresult *r) // query 3
@@ -146,14 +159,18 @@ void PagamentoMetodoUtente(PGconn *conn, PGresult *r) // query 3
 void CarrelloUtenti(PGconn *conn, PGresult *r) // query 4
 {
     // Trovare tutti i prodotti che ogni utente ha nel proprio carrello.
-    string query = "SELECT u.nome, p.nome, p.prezzo FROM utente as u, prodotto as p, carrello as c WHERE\
-                    u.id = c.id and c.id = p.SKU and u.id = $1::varchar GROUP BY u.nome, p.nome, p.prezzo ORDER BY p.prezzo ASC";
+    string query = "SELECT u.nome, p.nome, p.prezzo FROM utente as u, prodotto as p, carrello as c WHERE    u.id = c.id and c.id = p.SKU and u.id = $1::varchar GROUP BY u.nome, p.nome, p.prezzo ORDER BY p.prezzo ASC ";
     PGresult *stmt = PQprepare(conn, "query_carrello", query.c_str(), 1, NULL);
     string utente;
     cin >> utente;
 
     const char *par = utente.c_str();
     r = PQexecPrepared(conn, "query_carrello", 1, &par, NULL, 0, 0);
+    checkResults(r, conn);
+    int tuple = PQntuples(r);
+    int campi = PQnfields(r);
+    printIntestazione(campi, r);
+    printValue(tuple, campi, r);
 }
 
 void ProdottiMagazzino(PGconn *conn, PGresult *r) // query 5
@@ -166,14 +183,43 @@ void ProdottiMagazzino(PGconn *conn, PGresult *r) // query 5
 
     const char *par = magazzino.c_str();
     r = PQexecPrepared(conn, "query_carrello", 1, &par, NULL, 0, 0);
+
+    checkResults(r, conn);
+    int tuple = PQntuples(r);
+    int campi = PQnfields(r);
+    printIntestazione(campi, r);
+    printValue(tuple, campi, r);
 }
 
 void OrdiniUtente(PGconn *conn, PGresult *r) // query 6
 {
+    // tutti gli ordini di un utente, il contenuto di ogni ordine e il prezzo totale
+    PQexec(conn, "SELECT u.nome, o.id, GROUP_CONCAT(p.nome SEPARATOR ', ') as Prodotti, sum(p.prezzo) as Totale FROM Utente as u, prodotto as p, ordine as o GROUP BY u.nome, o.id, Prodotti, Totale ORDER BY Totale ASC ");
+
+    checkResults(r, conn);
+    int tuple = PQntuples(r);
+    int campi = PQnfields(r);
+    printIntestazione(campi, r);
+    printValue(tuple, campi, r);
 }
 
-void PagamentoUtente(PGconn *conn, PGresult *r) // query 7
+void TotaleCarrello(PGconn *conn, PGresult *r) // query 7
 {
+    string query = "SELECT c.id, sum(p.prezzo * con.quantita) as totale, count(con.prodotto) as NumeroProdotti FROM carrello as c, contenuto as con, prodotto as p WHERE c.id = con.carrello and con.prodotto = p.SKU and c.id = $1::varchar";
+
+    PGresult *stmt = PQprepare(conn, "query_carrello_totale", query.c_str(), 1, NULL);
+
+    string carrello;
+    cin >> carrello;
+
+    const char *par = carrello.c_str();
+
+    r = PQexecPrepared(conn, "query_carrello_totale", 1, &par, NULL, 0, 0);
+    checkResults(r, conn);
+    int tuple = PQntuples(r);
+    int campi = PQnfields(r);
+    printIntestazione(campi, r);
+    printValue(tuple, campi, r);
 }
 
 void SpedizioniVersoUtente(PGconn *conn, PGresult *r) // query 8
