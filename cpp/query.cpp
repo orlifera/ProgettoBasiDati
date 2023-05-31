@@ -67,6 +67,10 @@ int main()
         default:
             break;
         }
+
+        cout << "Scegli la prossima query: " << endl;
+        lista();
+        cin >> i;
     }
     /* Query 8. Trovare tutte le spedizioni verso un utente */
     /* Query 9. Tracciamento spedizione, inserendo il numero di spedizione si restituisce la data di consegna
