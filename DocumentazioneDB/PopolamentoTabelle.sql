@@ -67,9 +67,9 @@ CREATE TABLE Spedizione
     DataSpedizione TIMESTAMP,
     DataConsegna TIMESTAMP,
     Peso INT NOT NULL,
-    Utente Id NOT NULL,
+    Utente INT NOT NULL,
     PRIMARY KEY(Id),
-    FOREIGN KEY(Utente) REFERENCES Utente(Id) ON DELETE CASCADE ON UPDATE SET NULL,
+    FOREIGN KEY(Utente) REFERENCES Utente(Id) ON DELETE CASCADE ON UPDATE SET NULL
 );
 
 CREATE TABLE Ordine
@@ -100,35 +100,35 @@ INSERT INTO Utente
     (Id, Nome, Indirizzo, Telefono, Email, Azienda, pIva, CF)
 VALUES
     (1, 'Wilhelmina Jacquemard', '88 Jenna Junction', '+249 468 510 5984', 'wjacquemard0@soundcloud.com', '', '', 'JASJRQ56S50Y724T'),
-    (2, 'Care Galland', '634 Banding Parkway', '+420 390 610 3240', 'cgalland1@macromedia.com', '', '', 'DWVCBG98F91K236Q'),
+    (2, 'Care Galland', '634 Banding Parkway', '+420 390 610 3240', 'cgalland1@macromedia.com', '', '', 'WKQNDD60T79A336F'),
     (3, 'Shandra Aikin', '19788 Orin Terrace', '+62 797 181 6151', 'saikin2@unicef.org', 'Innovatech Solutions', '01083699486', ''),
-    (4, 'Bell Pappi', '720 Troy Pass', '+63 118 877 2980', 'bpappi3@theglobeandmail.com', 'TechPro Systems', '71733797883', ''),
-    (5, 'Pearce Clissett', '31 Troy Alley', '+7 841 462 3287', 'pclissett4@deliciousdays.com', '', '', 'WKQNDD60T79A336F'),
-    (6, 'Odelia Swyer', '8477 Kipling Alley', '+86 460 470 1622', 'oswyer5@kickstarter.com', 'BrightStar Enterprises', '27374892328', ''),
+    (4, 'Bell Pappi', '720 Troy Pass', '+63 118 877 2980', 'bpappi3@theglobeandmail.com', 'TechPro Systems', '27374892328', ''),
+    (5, 'Pearce Clissett', '31 Troy Alley', '+7 841 462 3287', 'pclissett4@deliciousdays.com', '', '', 'DWVCBG98F91K236Q'),
+    (6, 'Odelia Swyer', '8477 Kipling Alley', '+86 460 470 1622', 'oswyer5@kickstarter.com', 'BrightStar Enterprises', '80578030458', ''),
     (7, 'Rene Leek', '3 Forest Dale Drive', '+46 237 515 5297', 'rleek6@mayoclinic.com', '', '', 'TIXHFH23B93B158C'),
-    (8, 'Benoit Attwool', '1 Homewood Place', '+62 648 864 2420', 'battwool7@mail.ru', 'GlobalGrowth Ventures', '80578030458', ''),
-    (9, 'Nanny Midden', '2 Kedzie Circle', '+54 323 374 9278', 'nmidden8@chicagotribune.com', 'OptimaTech Services', '07768562249', ''),
-    (10, 'Pierette Lanyon', '66 Almo Avenue', '+60 500 286 1025', 'planyon9@123-reg.co.uk', '', '', 'JESQKI34V98X702A'),
-    (11, 'Earl Bateman', '43 East Hill', '+86 739 166 0837', 'ebatemana@usatoday.com', 'NexusLink Solutions', '05803936568', ''),
-    (12, 'Nicholle Worcester', '03 Amoth Junction', '+86 939 352 6540', 'nworcesterb@is.gd', '', '', 'SWPKEM29I05V400X'),
-    (13, 'Tiffanie Thrush', '4 Spenser Center', '+212 738 585 4918', 'tthrushc@zimbio.com', 'PrimeEdge Technologies', '66802152950', ''),
-    (14, 'Erroll Kennifeck', '6 Iowa Alley', '+86 551 218 0295', 'ekennifeckd@barnesandnoble.com', '', '', 'ULBSZN37A54Q244M'),
-    (15, 'Sally Woolforde', '8932 Bartelt Pass', '+86 868 896 0721', 'swoolfordee@sogou.com', 'ProActive Solutions', '31385911745', ''),
-    (16, 'Chance Foresight', '3 Roth Court', '+7 774 930 8376', 'cforesightf@wufoo.com', '', '', 'LHZDXM08L97H100H'),
-    (17, 'Cherish Thornthwaite', '30752 Lunder Trail', '+48 358 415 1560', 'cthornthwaiteg@nasa.gov', 'EliteConnect Enterprises', '14136049047', ''),
-    (18, 'Tania Gabites', '20643 Southridge Road', '+63 573 504 2713', 'tgabitesh@google.it', '', '', 'SEABFI62O29J894F'),
-    (19, 'Milzie Dagnall', '95 Elmside Alley', '+1 210 968 1081', 'mdagnalli@fotki.com', '', '', 'CVVTWE02Q34D867I'),
-    (20, 'Dulcea Sapseed', '71 Montana Crossing', '+1 714 552 1248', 'dsapseedj@yelp.com', 'QuantumTech Innovations', '65126842363', ''),
-    (21, 'Adolpho Quickfall', '6 Vernon Hill', '+58 569 306 2309', 'aquickfallk@foxnews.com', 'Visionary Labs', '78246249335', ''),
-    (22, 'Tris Quest', '79721 Little Fleur Point', '+46 213 994 8413', 'tquestl@adobe.com', '', '', 'CCYFDY17G16K364S'),
-    (23, 'Hamil Zarfati', '4 Fisk Park', '+375 576 510 9908', 'hzarfatim@mac.com', 'SmartSolutions Inc.', '11138445935', ''),
-    (24, 'Nolana Aubin', '77679 Badeau Drive', '+94 891 169 8767', 'naubinn@ycombinator.com', '', '', 'YKWYRF57B22A815R'),
-    (25, 'Percival Brocket', '53 Buhler Center', '+62 687 889 9290', 'pbrocketo@cnn.com', 'AgileEdge Technologies', '12745364066', ''),
+    (8, 'Benoit Attwool', '1 Homewood Place', '+62 648 864 2420', 'battwool7@mail.ru', 'GlobalGrowth Ventures', '07768562249', ''),
+    (9, 'Nanny Midden', '2 Kedzie Circle', '+54 323 374 9278', 'nmidden8@chicagotribune.com', 'OptimaTech Services', '05803936568', ''),
+    (10, 'Pierette Lanyon', '66 Almo Avenue', '+60 500 286 1025', 'planyon9@123-reg.co.uk', '', '', 'CVVTWE02Q34D867I'),
+    (11, 'Earl Bateman', '43 East Hill', '+86 739 166 0837', 'ebatemana@usatoday.com', 'NexusLink Solutions', '66802152950', ''),
+    (12, 'Nicholle Worcester', '03 Amoth Junction', '+86 939 352 6540', 'nworcesterb@is.gd', '', '', 'HTIOCR49U56E694K'),
+    (13, 'Tiffanie Thrush', '4 Spenser Center', '+212 738 585 4918', 'tthrushc@zimbio.com', 'PrimeEdge Technologies', '31385911745', ''),
+    (14, 'Erroll Kennifeck', '6 Iowa Alley', '+86 551 218 0295', 'ekennifeckd@barnesandnoble.com', '', '', 'QOGENY87U24W750A'),
+    (15, 'Sally Woolforde', '8932 Bartelt Pass', '+86 868 896 0721', 'swoolfordee@sogou.com', 'ProActive Solutions', '14136049047', ''),
+    (16, 'Chance Foresight', '3 Roth Court', '+7 774 930 8376', 'cforesightf@wufoo.com', '', '', 'CCYFDY17G16K364S'),
+    (17, 'Cherish Thornthwaite', '30752 Lunder Trail', '+48 358 415 1560', 'cthornthwaiteg@nasa.gov', 'EliteConnect Enterprises', '65126842363', ''),
+    (18, 'Tania Gabites', '20643 Southridge Road', '+63 573 504 2713', 'tgabitesh@google.it', '', '', 'ULBSZN37A54Q244M'),
+    (19, 'Milzie Dagnall', '95 Elmside Alley', '+1 210 968 1081', 'mdagnalli@fotki.com', '', '', 'SEABFI62O29J894F'),
+    (20, 'Dulcea Sapseed', '71 Montana Crossing', '+1 714 552 1248', 'dsapseedj@yelp.com', 'QuantumTech Innovations', '11138445935', ''),
+    (21, 'Adolpho Quickfall', '6 Vernon Hill', '+58 569 306 2309', 'aquickfallk@foxnews.com', 'Visionary Labs', '12745364066', ''),
+    (22, 'Tris Quest', '79721 Little Fleur Point', '+46 213 994 8413', 'tquestl@adobe.com', '', '', 'JESQKI34V98X702A'),
+    (23, 'Hamil Zarfati', '4 Fisk Park', '+375 576 510 9908', 'hzarfatim@mac.com', 'SmartSolutions Inc.', '25555793641', ''),
+    (24, 'Nolana Aubin', '77679 Badeau Drive', '+94 891 169 8767', 'naubinn@ycombinator.com', '', '', 'SWPKEM29I05V400X'),
+    (25, 'Percival Brocket', '53 Buhler Center', '+62 687 889 9290', 'pbrocketo@cnn.com', 'AgileEdge Technologies', '76532982406', ''),
     (26, 'Delmore Evensden', '6 Maple Wood Terrace', '+351 469 184 2494', 'devensdenp@technorati.com', 'PowerGenix Industries', '71733797883', ''),
-    (27, 'Halsy Eyden', '0 Amoth Junction', '+420 787 828 1465', 'heydenq@a8.net', 'NovaTech Ventures', '25555793641', ''),
-    (28, 'Gabriel Keaveney', '229 Canary Junction', '+93 119 259 6597', 'gkeaveneyr@google.co.jp', '', '', 'QOGENY87U24W750A'),
-    (29, 'Riobard Claus', '36228 Park Meadow Point', '+61 345 792 5121', 'rclauss@xing.com', 'PowerGenix Industries', '76532982406', ''),
-    (30, 'Faina Danaher', '92698 Mandrake Point', '+1 334 378 6687', 'fdanahert@wsj.com', '', '', 'HTIOCR49U56E694K');
+    (27, 'Halsy Eyden', '0 Amoth Junction', '+420 787 828 1465', 'heydenq@a8.net', '', '', 'LHZDXM08L97H100H'),
+    (28, 'Gabriel Keaveney', '229 Canary Junction', '+93 119 259 6597', 'gkeaveneyr@google.co.jp', '', '', 'KSPSNP42M20C983R'),
+    (29, 'Riobard Claus', '36228 Park Meadow Point', '+61 345 792 5121', 'rclauss@xing.com', '', '', ''),
+    (30, 'Faina Danaher', '92698 Mandrake Point', '+1 334 378 6687', 'fdanahert@wsj.com', '', '', 'YKWYRF57B22A815R');
 
 
 /* MAGAZZINO */
@@ -161,9 +161,9 @@ values
 
 
 /* CARRELLO */
-insert into Carrello 
-    (Id, DataAggiunta, Quantita, Utente) 
-values 
+insert into Carrello
+    (Id, DataAggiunta, Quantita, Utente)
+values
     (798, '2023-06-27 18:25:38', 2, 27),
     (810, '2023-05-11 01:45:10', 1, 26),
     (100, '2023-06-17 14:18:15', 7, 9),
@@ -196,6 +196,7 @@ values
     (293, '2023-06-14 22:47:05', 3, 9);
 
 
+
 /* CONTENUTO */
 insert into Contenuto
     (Prodotto, Carrello)
@@ -219,13 +220,14 @@ values
     (43228, 407),
     (42165, 407),
     (92565, 418),
-    (92565, 577);
+    (92565, 577),
+    (82710, 293);
 
 
 /* PAGAMENTO */
-insert into Pagamneto 
-    (Id, DataPagamento, Metodo, PrezzoSpedizione, Carrello) 
-values 
+insert into Pagamento
+    (Id, DataPagamento, Metodo, PrezzoSpedizione, Carrello)
+values
     (9202, '2023-05-29 20:11:56', 'Carta', 13.62, 798),
     (3231, '2023-06-29 18:13:02', 'Bonifico', 14.96, 810),
     (5439, '2023-06-27 13:07:49', 'Bonifico', 7.27, 100),
@@ -241,7 +243,7 @@ values
     (9777, '2023-05-05 19:05:50', 'Carta', 12.23, 474),
     (1816, '2023-05-30 03:21:48', 'Bonifico', 6.53, 250),
     (5828, '2023-04-09 19:36:08', 'Bonifico', 13.62, 897);
-    /*
+/*
     (9844, '2023-05-18 10:13:44', 'Carta', 7.8, 534),
     (9725, '2023-05-01 08:43:20', 'Paypal', 5.32, 421),
     (3126, '2023-05-09 12:33:09', 'Paypal', 13.97, 338),
@@ -261,9 +263,9 @@ values
 
 
 /* SPEDIZIONE */
-insert into Spedizione 
-    (Id, DataSpedizione, DataConsegna, Peso, Utente) 
-values 
+insert into Spedizione
+    (Id, DataSpedizione, DataConsegna, Peso, Utente)
+values
     (2500, '2023-06-25 20:11:56', '2023-06-26 18:13:02', 28, 1),
     (1400, '2023-06-22 10:55:10', '2023-06-23 20:11:56', 45, 1),
     (5815, '2023-06-23 02:48:08', '2023-06-22 03:40:20', 116, 1),
@@ -273,16 +275,16 @@ values
     (6444, '2023-06-23 03:40:20', '2023-06-23 07:29:48', 50, 16),
     (3275, '2023-06-24 18:32:43', '2023-06-22 02:48:08', 100, 16),
     (1782, '2023-06-23 03:40:20', '2023-06-21 20:11:56', 38, 11),
-    (5547, '2023-06-23 10:55:10', '2023-06-26 11:15:53', 40, 29);
-    /*
-    (7988, '2023-06-24 18:13:02', '2023-06-24 18:13:02', 51),
-    (3135, '2023-06-30 18:32:43', '2023-06-22 18:32:43', 138),
-    (2187, '2023-06-24 07:29:48', '2023-06-27 11:15:53', 84),
-    (7225, '2023-06-25 10:55:10', '2023-06-25 18:13:02', 128),
-    (5621, '2023-06-27 18:13:02', '2023-06-23 02:19:25', 147),
-    (1752, '2023-06-20 02:19:25', '2023-06-23 08:30:55', 131),
-    (5319, '2023-06-23 20:11:56', '2023-06-18 07:29:48', 48),
-    (7954, '2023-06-20 08:30:55', '2023-06-19 14:32:24', 129),
+    (5547, '2023-06-23 10:55:10', '2023-06-26 11:15:53', 40, 29),
+    (7988, '2023-05-22 18:13:02', '2023-05-24 18:13:02', 51, 29),
+    (3135, '2023-04-30 18:32:43', '2023-05-01 10:32:43', 138, 6),
+    (2187, '2023-05-24 07:29:48', '2023-05-27 11:15:53', 84, 7),
+    (7225, '2023-02-25 10:55:10', '2023-02-28 18:13:02', 128, 9),
+    (5621, '2023-03-27 18:13:02', '2023-03-28 02:19:25', 147, 1),
+    (1752, '2023-01-20 02:19:25', '2023-01-23 08:30:55', 131, 2),
+    (5319, '2023-02-23 20:11:56', '2023-02-26 07:29:48', 48, 5);
+
+/*
     (7001, '2023-06-16 02:19:25', '2023-06-20 14:32:24', 76),
     (7245, '2023-06-27 12:33:09', '2023-06-23 18:32:43', 44),
     (2970, '2023-06-15 07:29:48', '2023-06-23 02:48:08', 45),
@@ -299,9 +301,9 @@ values
 
 
 /* ORDINE */
-insert into Ordine 
-    (Id, DataOrdine, Pagamento, Spedizione) 
-values 
+insert into Ordine
+    (Id, DataOrdine, Pagamento, Spedizione)
+values
     (8982, '2023-05-25', 9202, 2500),
     (5893, '2023-04-13', 3231, 2500),
     (4545, '2023-06-19', 5439, 1400),
