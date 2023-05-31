@@ -53,7 +53,7 @@ int main()
             break;
 
         case 8:
-            cout << "Query 8. Trovare tutte le spedizioni verso un utente.\n";
+            cout << "Query 8.\n";
             break;
 
         case 9:
