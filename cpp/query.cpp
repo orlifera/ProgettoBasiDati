@@ -16,59 +16,64 @@ int main()
         switch (i)
         {
         case 1:
-            cout << "Query 1.\n";
+            cout << "\nQuery 1.\n";
             UtentiAzienda(con, r);
             break;
         case 2:
-            cout << "Query 2.\n";
+            cout << "\nQuery 2.\n";
             listaUtenti(con, r);
             PagamentoUtente(con, r);
 
             break;
         case 3:
-            cout << "Query 3. Trovare tutti i pagamenti con un certo metodo.\n";
+            cout << "\nQuery 3. Trovare tutti i pagamenti con un certo metodo.\n";
             break;
 
         case 4:
-            cout << "Query 4.\n";
+            cout << "\nQuery 4.\n";
             listaUtenti(con, r);
             CarrelloUtenti(con, r);
             break;
 
         case 5:
-            cout << "Query 5.\n";
+            cout << "\nQuery 5.\n";
             listaMagazzino(con, r);
             ProdottiMagazzino(con, r);
             break;
 
         case 6:
-            cout << "Query 6.\n";
+            cout << "\nQuery 6.\n";
             OrdiniUtente(con, r);
             break;
 
         case 7:
-            cout << "Query 7.\n";
+            cout << "\nQuery 7.\n";
             listaCarrelli(con, r);
             TotaleCarrello(con, r);
             break;
 
         case 8:
-            cout << "Query 8.\n";
+            cout << "\nQuery 8.\n";
+            listaUtenti(con, r);
+            SpedizioniVersoUtente(con, r);
             break;
 
         case 9:
-            cout << "Query 9. Tracciamento spedizione.\n";
+            cout << "\nQuery 9. Tracciamento spedizione.\n";
+            listaSpedizioni(con, r);
+            TracciamentoSpedizione(con, r);
             break;
 
         case 10:
-            cout << "Query 10. Utenti con p.iva e codice fiscale (deve restituire NULL).\n";
+            cout << "\nQuery 10.\n";
+            UtentiIvaCF(con, r);
             break;
 
         default:
             break;
         }
 
-        cout << "Scegli la prossima query: " << endl;
+        cout << "\nScegli la prossima query: " << endl;
         lista();
         cin >> i;
     }
