@@ -87,7 +87,7 @@ void printValueFile(int tuple, int campi, PGresult *res, ofstream myfile)
 
 void lista()
 {
-    cout << "1. Trovare tutti gli utenti che sono registrati come azienda nel Database.\n2. trovare tutti i pagamenti di un utente dato il suo codice\n3. da ripensare.\n4. Trovare tutti i prodotti che ogni utente ha nel proprio carrello.\n5. Trovare che prodotti sono in un certo magazzino dato il suo codice identificativo.\n6. Trovare il numero di ordini di un utente.\n7. Prezzo totale di ogni carrello.\n8. Tutte le spedizioni verso un utente.\n9. Tracciamento spedizione(Ritorna consegnato se il dataconsegna <= current_timetsamp o la data di consegna altrimenti).\n10. Utenti con pIva e CF (deve restituire NULL)\n";
+    cout << "1. Trovare tutti gli utenti che sono registrati come azienda nel Database.\n2. trovare tutti i pagamenti di un utente dato il suo codice\n3. Trovare il nome di tutte le persone che hanno almeno due ordini.\n4. Trovare tutti i prodotti che ogni utente ha nel proprio carrello.\n5. Trovare che prodotti sono in un certo magazzino dato il suo codice identificativo.\n6. Trovare il numero di ordini di un utente.\n7. Prezzo totale di ogni carrello.\n8. Tutte le spedizioni verso un utente.\n9. Tracciamento spedizione(Ritorna consegnato se il dataconsegna <= current_timetsamp o la data di consegna altrimenti).\n10. Utenti con pIva e CF (deve restituire NULL)\n";
 }
 
 void listaUtenti(PGconn *conn, PGresult *res)
@@ -161,16 +161,15 @@ void PagamentoUtente(PGconn *conn, PGresult *r) // query 2
     printValue(tuple, campi, r);
 }
 
-// void PagamentoMetodoUtente(PGconn *conn, PGresult *r) // query 3
-// {
-//     // string query = "";
-//     // PGresult *stmt = PQprepare(conn, "query_metodo", query.c_str(), 1, NULL);
-//     // string metodo;
-//     // cin >> metodo;
-
-//     // const char *par = metodo.c_str();
-//     // r = PQexecPrepared(conn, "query_pagamento", 1, &par, NULL, 0, 0);
-// }
+void PagamentoMetodoUtente(PGconn *conn, PGresult *r) // query 3
+{
+    r = PQexec(conn, "SELECT count(*) as Numero, u.nome FROM ordine as o, utente as u, spedizione as s WHERE (u.id = s.utente and s.id = o.spedizione) GROUP BY u.nome HAVING count(*) >= 2");
+    checkResults(r, conn);
+    int tuple = PQntuples(r);
+    int campi = PQnfields(r);
+    printIntestazione(campi, r);
+    printValue(tuple, campi, r);
+}
 
 void CarrelloUtenti(PGconn *conn, PGresult *r) // query 4
 {
