@@ -3,7 +3,6 @@
 #include <cstdio>
 #include "pass.h"
 #include "dependencies/include/libpq-fe.h"
-#include <unistd.h>
 
 #define PG_HOST "127.0.0.1" // oppure " localhost " o " postgresql "
 #define PG_USER "postgres"  // il vostro nome utente

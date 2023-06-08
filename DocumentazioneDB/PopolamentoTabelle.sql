@@ -30,6 +30,8 @@ CREATE TABLE Prodotto
     FOREIGN KEY(Magazzino) REFERENCES Magazzino(Id) ON DELETE CASCADE ON UPDATE SET NULL
 );
 
+CREATE INDEX Prodotto_Magazzino ON Prodotto(Magazzino);
+
 CREATE TABLE Carrello
 (
     Id INT NOT NULL,
@@ -49,11 +51,17 @@ CREATE TABLE Contenuto
     FOREIGN KEY(Carrello) REFERENCES Carrello(Id) ON DELETE CASCADE ON UPDATE SET NULL
 );
 
+CREATE TYPE metodo_pagamento as ENUM
+(
+    'Carta',
+    'PayPal',
+    'Bonifico'
+);
 CREATE TABLE Pagamento
 (
     Id INT NOT NULL,
     DataPagamento TIMESTAMP,
-    Metodo VARCHAR(255),
+    Metodo metodo_pagamento,
     PrezzoSpedizione FLOAT,
     Carrello INT NOT NULL,
     PRIMARY KEY(Id),
