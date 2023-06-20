@@ -1,4 +1,4 @@
 #include <iostream>
 #include <fstream>
 
-#define pass "MLTech"
+#define pass "Qwe1234"

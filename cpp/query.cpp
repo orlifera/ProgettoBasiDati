@@ -26,7 +26,8 @@ int main()
 
             break;
         case 3:
-            cout << "\nQuery 3. Trovare tutti i pagamenti con un certo metodo.\n";
+            cout << "\nQuery 3.\n";
+            OrdiniUtenteHaving(con, r);
             break;
 
         case 4:
@@ -59,7 +60,7 @@ int main()
             break;
 
         case 9:
-            cout << "\nQuery 9. Tracciamento spedizione.\n";
+            cout << "\nQuery 9.\n";
             listaSpedizioni(con, r);
             TracciamentoSpedizione(con, r);
             break;
@@ -77,8 +78,4 @@ int main()
         lista();
         cin >> i;
     }
-    /* Query 8. Trovare tutte le spedizioni verso un utente */
-    /* Query 9. Tracciamento spedizione, inserendo il numero di spedizione si restituisce la data di consegna
-                se la data di consegan > di data odierna o "Conseganto" altrimenti */
-    /* Query 10. Utenti con p.iva e codice fiscale (deve restituire NULL) */
 }

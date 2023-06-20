@@ -275,13 +275,13 @@ insert into Spedizione
 values
     (2500, '2023-06-25 20:11:56', '2023-06-26 18:13:02', 28, 1),
     (1400, '2023-06-22 10:55:10', '2023-06-23 20:11:56', 45, 1),
-    (5815, '2023-06-23 02:48:08', '2023-06-22 03:40:20', 116, 1),
-    (3828, '2023-06-21 18:13:02', '2023-06-19 02:48:08', 55, 2),
-    (7074, '2023-06-29 18:13:02', '2023-06-26 03:40:20', 54, 5),
+    (5815, '2023-06-21 02:48:08', '2023-06-24 03:40:20', 116, 1),
+    (3828, '2023-06-21 18:13:02', '2023-06-22 02:48:08', 55, 2),
+    (7074, '2023-06-29 18:13:02', '2023-06-30 03:40:20', 54, 5),
     (4014, '2023-06-22 02:48:08', '2023-06-28 12:33:09', 92, 28),
     (6444, '2023-06-23 03:40:20', '2023-06-23 07:29:48', 50, 16),
-    (3275, '2023-06-24 18:32:43', '2023-06-22 02:48:08', 100, 16),
-    (1782, '2023-06-23 03:40:20', '2023-06-21 20:11:56', 38, 11),
+    (3275, '2023-06-24 18:32:43', '2023-06-27 02:48:08', 100, 16),
+    (1782, '2023-06-23 03:40:20', '2023-06-29 20:11:56', 38, 11),
     (5547, '2023-06-23 10:55:10', '2023-06-26 11:15:53', 40, 29),
     (7988, '2023-05-22 18:13:02', '2023-05-24 18:13:02', 51, 29),
     (3135, '2023-04-30 18:32:43', '2023-05-01 10:32:43', 138, 6),
@@ -326,3 +326,68 @@ values
     (8551, '2023-05-11', 9777, 3275),
     (5642, '2023-05-15', 1816, 1782),
     (5108, '2023-05-27', 5828, 5547);
+
+
+
+-- INIZIO DELLE QUERY
+-- QUERY 1
+SELECT u.nome, u.pIva 
+FROM utente as u 
+
+-- QUERY 2
+SELECT p.id as IdPagamento, p.metodo, u.nome as NomeUtente 
+FROM pagamento as p, carrello as c, utente as u 
+WHERE (u.id = c.utente and c.id = p.carrello and u.id = $1::int)
+-- u.id = $1::int dato inserito via terminale
+
+-- QUERY 3
+SELECT count(*) as Numero, u.nome 
+FROM ordine as o, utente as u, spedizione as s 
+WHERE (u.id = s.utente and s.id = o.spedizione) 
+GROUP BY u.nome 
+HAVING count(*) >= 2
+
+-- QUERY 4
+SELECT u.nome AS Utente, c.id AS Carrello, p.nome AS Prodotto 
+FROM Utente as u, prodotto as p, carrello as c, contenuto as con 
+WHERE u.Id = c.Utente and c.id = con.carrello and con.prodotto = p.sku and u.id = $1::int 
+ORDER BY Utente, Carrello
+-- u.id = $1::int dato inserito via terminale
+
+-- QUERY 5
+SELECT p.nome as prodotto, m.id as magazzino 
+FROM prodotto as p, magazzino as m 
+WHERE(m.id = p.magazzino and m.id = $1::int) 
+GROUP BY p.nome, m.id 
+ORDER BY m.id
+-- m.id = $1::int dato inserito via terminale
+
+-- QUERY 6
+SELECT distinct u.nome, o.id as idOrdine, STRING_AGG(p.nome, ', ') as Prodotti, sum(p.prezzo) as Totale 
+FROM Utente as u, prodotto as p, ordine as o GROUP BY u.nome, o.id 
+ORDER BY Totale ASC
+
+-- QUERY 7
+SELECT DISTINCT u.nome, c.id, sum(p.prezzo) as totale, count(con.prodotto) as NumeroProdotti 
+FROM carrello as c, prodotto as p, contenuto as con, utente as u 
+WHERE u.id = c.utente and c.id = con.carrello and con.prodotto = p.SKU and c.id = $1::int 
+GROUP BY u.nome, c.id
+-- c.id = $1::int dato inserito via terminale
+
+-- QUERY 8
+SELECT u.nome, s.id, s.DataSpedizione, s.DataConsegna 
+FROM utente as u, spedizione as s 
+WHERE(u.id = s.utente and u.id = $1::int)
+-- u.id = $1::int dato inserito via terminale
+
+-- QUERY 9
+SELECT CASE WHEN s.DataConsegna <= CURRENT_TIMESTAMP THEN 'consegnato' ELSE CONCAT('in consegna il ', TO_CHAR(dataConsegna, 'YYYY-MM-DD')) END AS StatoConsegna, s.id as IdSpedizione 
+FROM Spedizione as s 
+WHERE s.id = $1::int 
+GROUP BY s.id
+-- s.id = $1::int dato inserito via terminale
+
+-- QUERY 10
+SELECT u.nome, u.pIva, u.CF 
+FROM utente as u 
+WHERE u.pIva IS NOT NULL and u.CF IS NOT NULL
